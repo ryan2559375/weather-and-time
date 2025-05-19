@@ -47,3 +47,5 @@ export const CurrentTime = ({ timezone, locale }: CurrentTimeProps) => {
     </>
   );
 };
+
+export default CurrentTime;
