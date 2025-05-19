@@ -1,15 +1,10 @@
 import { StyledWeatherLabel } from "../../weather/components/StyledWeather.tsx";
 import { StyledTime } from "./StyledTime.tsx";
-import {
-  ChronoUnit,
-  DateTimeFormatter,
-  LocalTime,
-  ZonedDateTime,
-  ZoneId,
-} from "@js-joda/core";
+import { DateTimeFormatter, ZoneId } from "@js-joda/core";
 import "@js-joda/timezone/dist/js-joda-timezone-10-year-range";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { Locale } from "@js-joda/locale";
+import { useCurrentZonedTime } from "../hooks/useCurrentZonedTime.ts";
 
 export interface CurrentTimeProps {
   timezone: string;
@@ -17,33 +12,22 @@ export interface CurrentTimeProps {
 }
 
 export const CurrentTime = ({ timezone, locale }: CurrentTimeProps) => {
+  const zoneId = useMemo(() => ZoneId.of(timezone), [timezone]);
+  const { data: currentTime } = useCurrentZonedTime(zoneId, "minute");
+
   const formatter = useMemo(
     () => DateTimeFormatter.ofPattern("hh:mm a").withLocale(locale),
     [locale],
   );
 
-  const [time, setTime] = useState(() =>
-    ZonedDateTime.now(ZoneId.of(timezone)).toLocalTime(),
-  );
-  useEffect(() => {
-    const nextMinute = LocalTime.now().plusMinutes(1).withSecond(0).withNano(0);
-    let timeout = ChronoUnit.MILLIS.between(LocalTime.now(), nextMinute);
-    if (timeout <= 0) {
-      timeout = 10;
-    }
-
-    const timeoutId = setTimeout(() => {
-      setTime(nextMinute);
-    }, timeout);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [time]);
+  if (!currentTime) {
+    return null;
+  }
 
   return (
     <>
       <StyledWeatherLabel>Time</StyledWeatherLabel>
-      <StyledTime>{time.format(formatter)}</StyledTime>
+      <StyledTime>{currentTime.format(formatter)}</StyledTime>
     </>
   );
 };
