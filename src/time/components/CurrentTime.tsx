@@ -7,7 +7,7 @@ import {
   ZonedDateTime,
   ZoneId,
 } from "@js-joda/core";
-import "@js-joda/timezone";
+import "@js-joda/timezone/dist/js-joda-timezone-10-year-range";
 import { useEffect, useMemo, useState } from "react";
 import type { Locale } from "@js-joda/locale";
 
