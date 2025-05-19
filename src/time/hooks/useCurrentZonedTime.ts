@@ -31,7 +31,7 @@ export const useCurrentZonedTime = (
     refetchInterval,
   });
 
-  // Invalidate cache at 00.000 seconds if the timer drifts more than 100 seconds
+  // Invalidate cache at 00.000 seconds if the timer drifts more than 100 milliseconds
   const currentTime = queryResult.data;
   const queryClient = useQueryClient();
   useEffect(() => {
@@ -44,9 +44,11 @@ export const useCurrentZonedTime = (
         const nextMinute = currentMinute.plusMinutes(1);
         const timeout = ChronoUnit.MILLIS.between(currentTime, nextMinute);
         const timeoutId = setTimeout(() => {
-          queryClient.invalidateQueries({
-            queryKey: ["time", refreshInterval],
-          });
+          queryClient
+            .invalidateQueries({
+              queryKey: ["time", refreshInterval],
+            })
+            .catch(() => {});
         }, timeout);
         return () => {
           clearTimeout(timeoutId);
