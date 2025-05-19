@@ -1,4 +1,4 @@
-import{d as $,S as aa,g as ia,u as ea,a as ra,r as y,j as S,b as oa}from"./index-BkF7Xjde.js";import{j as na,D as ca,C as Aa,Z as ta,a as sa,b as ua}from"./js-joda.esm-DzVkF1RM.js";const ma=$(aa)`
+import{d as $,S as aa,g as ia,u as ea,a as ra,r as y,j as S,b as oa}from"./index-BCTkXi_k.js";import{j as na,D as ca,C as Aa,Z as ta,a as sa,b as ua}from"./js-joda.esm-DzVkF1RM.js";const ma=$(aa)`
   grid-area: time;
   font-size: 120%;
   align-self: flex-end;
@@ -16,4 +16,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
  */function Q(){c.use(X)}/*
  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
- */h.loadTzdbData(_),Q()})}()),D.exports}pa();const da={minute:1e3*60,second:1e3},Ma=(M,s)=>{const c=da[s],u=ea({queryKey:["time",s],queryFn:async()=>ta.now(M),refetchInterval:c}),m=u.data,E=ra();return y.useEffect(()=>{if(m&&s==="minute"){const P=m.withSecond(0).withNano(0);if(m.isAfter(P.plus(ca.ofMillis(100)))){const _=P.plusMinutes(1),T=Aa.MILLIS.between(m,_),b=setTimeout(()=>{E.invalidateQueries({queryKey:["time",s]})},T);return()=>{clearTimeout(b)}}}},[m,E,s]),u},ga=({timezone:M,locale:s})=>{const c=y.useMemo(()=>sa.of(M),[M]),{data:u}=Ma(c,"minute"),m=y.useMemo(()=>ua.ofPattern("hh:mm a").withLocale(s),[s]);return u?S.jsxs(S.Fragment,{children:[S.jsx(oa,{children:"Time"}),S.jsx(ma,{children:u.format(m)})]}):null};export{ga as CurrentTime,ga as default};
+ */h.loadTzdbData(_),Q()})}()),D.exports}pa();const da={minute:1e3*60,second:1e3},Ma=(M,s)=>{const c=da[s],u=ea({queryKey:["time",s],queryFn:async()=>ta.now(M),refetchInterval:c}),m=u.data,E=ra();return y.useEffect(()=>{if(m&&s==="minute"){const P=m.withSecond(0).withNano(0);if(m.isAfter(P.plus(ca.ofMillis(100)))){const _=P.plusMinutes(1),T=Aa.MILLIS.between(m,_),b=setTimeout(()=>{E.invalidateQueries({queryKey:["time",s]}).catch(()=>{})},T);return()=>{clearTimeout(b)}}}},[m,E,s]),u},ga=({timezone:M,locale:s})=>{const c=y.useMemo(()=>sa.of(M),[M]),{data:u}=Ma(c,"minute"),m=y.useMemo(()=>ua.ofPattern("hh:mm a").withLocale(s),[s]);return u?S.jsxs(S.Fragment,{children:[S.jsx(oa,{children:"Time"}),S.jsx(ma,{children:u.format(m)})]}):null};export{ga as CurrentTime,ga as default};
