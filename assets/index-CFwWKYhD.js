@@ -83,7 +83,7 @@ Error generating stack: `+l.message+`
 `,Hp=Fe(ov)`
   grid-area: temperature;
   font-size: 500%;
-`,xp=({location:n,station:c,background:f})=>{const{data:s}=Dg(c);return Gt.jsx(Mp,{children:Gt.jsxs(zp,{children:[Gt.jsx(Up,{background:f}),Gt.jsx(Cp,{children:n}),s&&Gt.jsx(Gt.Fragment,{children:Gt.jsxs(Np,{children:[Gt.jsx(g0,{children:"Observation"}),Gt.jsx(qp,{children:s.properties.textDescription}),Gt.jsx(g0,{children:"Temperature"}),Gt.jsx(Hp,{children:Gt.jsx(_g,{temperature:s.properties.temperature})})]})})]})})},Qp="/assets/pvd-ChP7KlKh.png",Bp=rv`
+`,xp=({location:n,station:c,background:f})=>{const{data:s}=Dg(c);return Gt.jsx(Mp,{children:Gt.jsxs(zp,{children:[Gt.jsx(Up,{background:f}),Gt.jsx(Cp,{children:n}),s&&Gt.jsx(Gt.Fragment,{children:Gt.jsxs(Np,{children:[Gt.jsx(g0,{children:"Observation"}),Gt.jsx(qp,{children:s.properties.textDescription}),Gt.jsx(g0,{children:"Temperature"}),Gt.jsx(Hp,{children:Gt.jsx(_g,{temperature:s.properties.temperature})})]})})]})})},Qp=""+new URL("pvd-ChP7KlKh.png",import.meta.url).href,Bp=rv`
   html, body, #root {
     margin: 0;
     padding: 0;
