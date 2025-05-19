@@ -5,21 +5,24 @@ export const StyledWeatherContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 10%;
 `;
 
 export const StyledWeather = styled.div`
   display: inline-grid;
+  width: 100%;
   grid-template-areas:
-    "location"
-    "temperature"
-    "observation";
+    "location location"
+    "temperature time"
+    "observation time";
+  grid-template-columns: 1fr min-content;
+  margin: 0 10%;
   align-items: center;
   justify-content: center;
   column-gap: 2em;
   font-size: 4vw;
   color: white;
   text-shadow: 0 0 10px black;
+  white-space: nowrap;
 `;
 
 export const StyledWeatherBackground = createGlobalStyle<{
@@ -33,7 +36,6 @@ export const StyledWeatherBackground = createGlobalStyle<{
 export const StyledWeatherLocation = styled.h2`
   margin: 0;
   grid-area: location;
-  font-size: 100%;
 `;
 
 export const StyledWeatherIcon = styled.img`

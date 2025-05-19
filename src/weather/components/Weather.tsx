@@ -10,14 +10,21 @@ import {
   StyledWeatherObservation,
   StyledWeatherTemperature,
 } from "./StyledWeather.tsx";
+import type { ReactNode } from "react";
 
 export interface WeatherProps {
   location: "Providence, RI";
   station: "KPVD";
   background: string;
+  children?: ReactNode;
 }
 
-export const Weather = ({ location, station, background }: WeatherProps) => {
+export const Weather = ({
+  location,
+  station,
+  background,
+  children,
+}: WeatherProps) => {
   const { data: weather } = useWeather(station);
   return (
     <StyledWeatherContainer>
@@ -35,6 +42,7 @@ export const Weather = ({ location, station, background }: WeatherProps) => {
               <StyledWeatherTemperature>
                 <Temperature temperature={weather.properties.temperature} />
               </StyledWeatherTemperature>
+              {children}
             </StyledWeatherDataContainer>
           </>
         )}
